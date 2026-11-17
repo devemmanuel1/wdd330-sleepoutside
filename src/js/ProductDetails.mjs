@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorage, calcDiscount, superscript } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, calcDiscount, superscript, animateCartIcon } from "./utils.mjs";
 
 export default class ProductDetails {
 
@@ -7,7 +7,7 @@ export default class ProductDetails {
         this.product = {};
         this.dataSource = dataSource;
     }
-    
+
     async init() {
         this.product = await this.dataSource.findProductById(this.productId);
 
@@ -43,6 +43,7 @@ export default class ProductDetails {
 
         setLocalStorage("so-cart", cartItems);
         superscript();
+        animateCartIcon();
     }
 
     renderProductDetails() {
@@ -55,10 +56,10 @@ export default class ProductDetails {
         const productId = this.product.Id;
         const storageKey = `so-comments-${productId}`;
 
-        const listEl  = document.getElementById("comments-list");
-        const formEl  = document.getElementById("comment-form");
+        const listEl = document.getElementById("comments-list");
+        const formEl = document.getElementById("comment-form");
         const inputEl = document.getElementById("comment-text");
-        const msgEl   = document.getElementById("comment-msg");
+        const msgEl = document.getElementById("comment-msg");
 
         if (!listEl || !formEl) return; // safety: HTML not present
 
@@ -66,14 +67,14 @@ export default class ProductDetails {
             const comments = getLocalStorage(storageKey) || [];
             listEl.innerHTML = comments.length
                 ? comments
-                      .map((c) => {
-                          const date = new Date(c.timestamp).toLocaleString();
-                          return `<p class="comment-item">
+                    .map((c) => {
+                        const date = new Date(c.timestamp).toLocaleString();
+                        return `<p class="comment-item">
                               <span class="comment-date">${date}</span>
                               <br />${escapeHtml(c.text)}
                           </p>`;
-                      })
-                      .join("")
+                    })
+                    .join("")
                 : `<p class="no-comments">No comments yet. Be the first!</p>`;
         };
 
