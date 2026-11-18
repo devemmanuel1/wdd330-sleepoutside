@@ -75,7 +75,6 @@ p {
   font-size: var(--small-font);
   width: 110px;
   height: 80px;
-
   flex-direction: column;
   align-items: flex-end;
   box-shadow: 1px 1px 4px var(--light-grey);
@@ -90,7 +89,7 @@ p {
   margin-top: -1.3em;
 }
 
-.logo--square>div {
+.logo--square > div {
   margin-top: -1.7em;
 }
 
@@ -114,7 +113,36 @@ button {
   border-bottom: 2px solid var(--primary-color);
 }
 
+.hide {
+  display: none !important;
+}
 /* End utility classes */
+
+/* Alert - W04 Individual */
+.alert {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  color: #721c24;
+  padding: 0.75rem 1rem;
+  margin: 1rem;
+  border-radius: 4px;
+}
+
+.alert p {
+  padding: 0;
+  margin: 0;
+}
+
+.alert span {
+  cursor: pointer;
+  font-weight: bold;
+  margin-left: 1rem;
+  font-size: 1.2rem;
+}
+/* End Alert */
 
 /* Cart icon styles */
 .cart {
@@ -135,22 +163,27 @@ button {
   position: absolute;
   top: 5px;
   right: 0;
-
   background-color: #efa868;
   color: #571c8b;
-
   border-radius: 45%;
   min-width: 18px;
   height: 18px;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   font-size: 0.75rem;
   font-weight: bold;
 }
 
+@keyframes cart-bounce {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+
+.cart-animate {
+  animation: cart-bounce 0.4s ease;
+}
 /* End cart icon styles */
 
 .mission {
@@ -232,7 +265,6 @@ button {
 .card__name {
   font-size: 1em;
 }
-
 /* End product list card */
 
 .product-detail {
@@ -250,9 +282,11 @@ button {
   display: grid;
   grid-template-columns: 25% 1fr auto;
   font-size: var(--small-font);
-  /* max-height: 120px; */
   align-items: center;
   gap: 0.5rem;
+  position: relative;
+  width: 100%;
+  padding-top: 2.5rem;
 }
 
 .cart-card__image {
@@ -338,6 +372,62 @@ button {
   color: #666;
 }
 
+/* Overriding generic button styles */
+.cart-card__remove {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  color: var(--dark-grey);
+  border: 1px solid var(--light-grey);
+  border-radius: 4px;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.cart-card__remove:hover {
+  background-color: var(--light-grey);
+}
+
+.cart-card__remove:focus-visible {
+  outline: 2px solid var(--tertiary-color);
+  outline-offset: 2px;
+}
+
+/* Cart total and checkout link */
+.sum-cost {
+  text-align: right;
+  font-size: var(--large-font);
+  font-weight: bold;
+  padding: 1rem 0 0.5rem 0;
+  margin: 0;
+}
+
+main.divider a[href*="checkout"] {
+  display: block;
+  width: fit-content;
+  margin: 0.5rem 0 2rem auto;
+  padding: 0.5em 2em;
+  background-color: var(--secondary-color);
+  color: white;
+  text-decoration: none;
+  font-size: var(--large-font);
+  border-radius: 4px;
+  text-align: center;
+  transition: background-color 0.15s ease;
+}
+
+main.divider a[href*="checkout"]:hover {
+  background-color: var(--primary-color);
+}
+
 .category-icons {
   display: block;
   margin: 0 auto;
@@ -347,34 +437,6 @@ button {
   padding: 10px;
   margin: 20px;
   width: 50px;
-}
-
-@media screen and (min-width: 500px) {
-  body {
-    max-width: 1080px;
-    margin: auto;
-  }
-
-  .mission {
-    font-size: 1.2em;
-  }
-
-  .cart-card {
-    font-size: inherit;
-    grid-template-columns: 150px 1fr auto;
-  }
-
-  .category-icons {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-  }
-
-  .category-icons img {
-    padding: 5px;
-    margin: 50px 20px 10px 20px;
-    width: 60px;
-  }
 }
 
 footer {
@@ -415,18 +477,76 @@ footer {
   text-decoration: underline;
 }
 
-@media screen and (max-width: 500px) {
-  .breadcrumb {
-    padding: 0.75rem 1rem;
-  }
+/* Checkout - W04 */
+.checkout {
+  max-width: 900px;
+  margin: auto;
 }
 
-.newsletter {
-  max-width: 480px;
-  margin: 2rem auto;
+.checkout__title {
   padding: 1rem;
 }
 
+.checkout-form__row {
+  display: grid;
+  gap: 1rem;
+}
+
+.card {
+  border: 1px solid var(--light-grey);
+  border-radius: 6px;
+  padding: 1rem;
+  margin: 0 0 1rem 0;
+}
+
+.card legend {
+  font-weight: bold;
+  padding: 0 0.5rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.field label {
+  font-size: var(--small-font);
+  font-weight: 600;
+}
+
+.field input {
+  padding: 0.6rem;
+  font-size: 1rem;
+  font-family: inherit;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.field input:invalid {
+  border-color: #c62828;
+}
+
+.order_summary {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.5rem 1rem;
+}
+
+.order_summary__total {
+  font-weight: bold;
+  border-top: 1px solid var(--light-grey);
+  padding-top: 0.5rem;
+}
+
+.btn-primary {
+  background-color: var(--secondary-color);
+  color: white;
+}
+/* End Checkout */
+
+/* Comments */
 .comments-section h3 {
   border-bottom: 1px solid #ddd;
   padding-bottom: 0.5rem;
@@ -448,17 +568,6 @@ footer {
   font-style: italic;
 }
 
-.newsletter h2 {
-  margin-top: 0;
-}
-
-.newsletter form {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin-top: 1rem;
-}
-
 #comment-text {
   padding: 0.6rem;
   font-family: inherit;
@@ -478,6 +587,25 @@ footer {
   cursor: pointer;
   font-size: 1rem;
 }
+/* End Comments */
+
+/* Newsletter */
+.newsletter {
+  max-width: 480px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.newsletter h2 {
+  margin-top: 0;
+}
+
+.newsletter form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
 
 .newsletter button:hover {
   background: #1f5673;
@@ -496,6 +624,15 @@ footer {
   color: #c62828;
 }
 
+#comment-msg.success {
+  color: #2e7d32;
+}
+
+#comment-msg.error {
+  color: #c62828;
+}
+/* End Newsletter */
+
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -503,72 +640,6 @@ footer {
   overflow: hidden;
   clip: rect(0 0 0 0);
   white-space: nowrap;
-}
-
-/* Let the remove button possition itself relative to its cart card. */
-.cart-card {
-  position: relative;
-  width: 100%;
-
-  /* Reserve space above product details for the corner button. */
-  padding-top: 2.5rem;
-}
-
-/* Ovverriding genere button styles */
-.cart-card__remove {
-  position: absolute;
-  top: 0.25rem;
-  right: 0.25rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2rem;
-  height: 2rem;
-  padding: 0;
-  margin: 0;
-  background-color: transparent;
-  color: var(--dark-grey);
-  border: 1px solid var(--light-grey);
-  border-radius: 4px;
-  font-size: 1.5rem;
-  line-height: 1;
-}
-
-.cart-card__remove:hover {
-  background-color: var(--light-grey);
-}
-
-/* Make keyboard focus easy to see */
-.cart-card__remove:focus-visible {
-  outline: 2px solid var(--tertiary-color);
-  outline-offset: 2px;
-}
-
-/* Cart total and checkout link */
-.sum-cost {
-  text-align: right;
-  font-size: var(--large-font);
-  font-weight: bold;
-  padding: 1rem 0 0.5rem 0;
-  margin: 0;
-}
-
-main.divider a[href*="checkout"] {
-  display: block;
-  width: fit-content;
-  margin: 0.5rem 0 2rem auto;
-  padding: 0.5em 2em;
-  background-color: var(--secondary-color);
-  color: white;
-  text-decoration: none;
-  font-size: var(--large-font);
-  border-radius: 4px;
-  text-align: center;
-  transition: background-color 0.15s ease;
-}
-
-main.divider a[href*="checkout"]:hover {
-  background-color: var(--primary-color);
 }
 
 /* Registration modal */
@@ -621,4 +692,42 @@ main.divider a[href*="checkout"]:hover {
 
 .registration-modal__close:hover {
   background: var(--light-grey);
+}
+
+@media screen and (min-width: 500px) {
+  body {
+    max-width: 1080px;
+    margin: auto;
+  }
+
+  .mission {
+    font-size: 1.2em;
+  }
+
+  .cart-card {
+    font-size: inherit;
+    grid-template-columns: 150px 1fr auto;
+  }
+
+  .category-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .category-icons img {
+    padding: 5px;
+    margin: 50px 20px 10px 20px;
+    width: 60px;
+  }
+
+  .checkout-form__row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .breadcrumb {
+    padding: 0.75rem 1rem;
+  }
 }
