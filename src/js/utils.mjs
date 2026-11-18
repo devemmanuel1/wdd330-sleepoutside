@@ -27,7 +27,7 @@ export function getParam(param) {
   const urlParams = new URLSearchParams(queryString);
   const product = urlParams.get(param);
 
-// This checks if product exists
+  // This checks if product exists
   if (product) return product;
   return null
 }
@@ -117,4 +117,22 @@ export function superscript() {
     cartNum.classList.remove("hide");
     cartNum.innerHTML = `${count}`;
   }
+}
+
+// Animate the cart (backpack) icon when an item is added
+export function animateCartIcon() {
+  const cartIcon = document.querySelector(".cart");
+  if (!cartIcon) return;
+
+  // Remove the class first so the animation can play again on every click
+  cartIcon.classList.remove("cart-animate");
+  void cartIcon.offsetWidth; // forces the browser to restart the animation
+  cartIcon.classList.add("cart-animate");
+
+  // Clean up when the animation finishes
+  cartIcon.addEventListener(
+    "animationend",
+    () => cartIcon.classList.remove("cart-animate"),
+    { once: true },
+  );
 }
