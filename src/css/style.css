@@ -33,6 +33,8 @@ img {
 header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
   padding: 0.5rem;
 }
 
@@ -40,11 +42,18 @@ p {
   padding: 0.75rem;
 }
 
+footer {
+  font-size: var(--small-font);
+  padding: 1em;
+}
+
+/* ---------- Logo ---------- */
 .logo {
   line-height: 60px;
   width: 245px;
   overflow: hidden;
   display: flex;
+  flex-shrink: 0;
   font-size: 30px;
   text-align: right;
   font-family: var(--font-headline);
@@ -93,7 +102,7 @@ p {
   margin-top: -1.7em;
 }
 
-/* utility classes */
+/* ---------- Utility classes ---------- */
 .highlight {
   color: var(--tertiary-color);
 }
@@ -116,9 +125,63 @@ button {
 .hide {
   display: none !important;
 }
-/* End utility classes */
 
-/* Alert - W04 Individual */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---------- Main Nav + Search - Project: Product Search ---------- */
+.main-nav {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.main-nav a {
+  text-decoration: none;
+  color: var(--dark-grey);
+  font-weight: 600;
+  font-size: var(--small-font);
+}
+
+.main-nav a:hover {
+  color: var(--tertiary-color);
+  text-decoration: underline;
+}
+
+.search-form {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex: 1;
+  max-width: 350px;
+  margin: 0 0.5rem;
+}
+
+.search-form input {
+  flex: 1;
+  min-width: 120px;
+  padding: 0.5rem;
+  font-size: 1rem;
+  font-family: inherit;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.search-form button {
+  padding: 0.5rem 0.8rem;
+  margin: 0;
+  font-size: 1rem;
+  background-color: var(--secondary-color);
+}
+
+/* ---------- Alert - W04 Individual ---------- */
 .alert {
   display: flex;
   justify-content: space-between;
@@ -142,13 +205,13 @@ button {
   margin-left: 1rem;
   font-size: 1.2rem;
 }
-/* End Alert */
 
-/* Cart icon styles */
+/* ---------- Cart icon ---------- */
 .cart {
   padding-top: 1em;
   position: relative;
   text-align: center;
+  flex-shrink: 0;
 }
 
 .cart svg {
@@ -176,16 +239,22 @@ button {
 }
 
 @keyframes cart-bounce {
-  0% { transform: scale(1); }
-  40% { transform: scale(1.3); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.3);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .cart-animate {
   animation: cart-bounce 0.4s ease;
 }
-/* End cart icon styles */
 
+/* ---------- Mission / Hero ---------- */
 .mission {
   position: absolute;
   top: 1rem;
@@ -204,7 +273,7 @@ button {
   text-align: center;
 }
 
-/* Product Grid */
+/* ---------- Product Grid / List ---------- */
 .product-grid {
   columns: 4;
   column-gap: 1rem;
@@ -243,7 +312,6 @@ button {
   color: var(--dark-grey);
 }
 
-/* Styles for product lists */
 .product-card {
   flex: 1 1 45%;
   margin: 0.25em;
@@ -265,8 +333,8 @@ button {
 .card__name {
   font-size: 1em;
 }
-/* End product list card */
 
+/* ---------- Product Detail ---------- */
 .product-detail {
   padding: 1em;
   max-width: 500px;
@@ -277,7 +345,52 @@ button {
   width: 100%;
 }
 
-/* Start cart list card styles */
+/* ---------- Breadcrumb / Category ---------- */
+.breadcrumb {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  font-size: 0.9rem;
+  color: var(--dark-grey);
+}
+
+.breadcrumb a,
+.breadcrumb-category {
+  color: var(--secondary-color);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.category-cta {
+  padding: 0.5rem 0 1rem;
+}
+
+.category-cta a {
+  color: var(--secondary-color);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.category-cta a:hover {
+  text-decoration: underline;
+}
+
+.category-icons {
+  display: block;
+  margin: 0 auto;
+}
+
+.category-icons img {
+  padding: 10px;
+  margin: 20px;
+  width: 50px;
+}
+
+/* ---------- Cart List ---------- */
 .cart-card {
   display: grid;
   grid-template-columns: 25% 1fr auto;
@@ -334,7 +447,9 @@ button {
   border-radius: 3px;
   cursor: pointer;
   line-height: 1;
-  transition: background-color 0.15s ease, color 0.15s ease;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
 }
 
 .quantity-btn:hover:not(:disabled) {
@@ -401,7 +516,6 @@ button {
   outline-offset: 2px;
 }
 
-/* Cart total and checkout link */
 .sum-cost {
   text-align: right;
   font-size: var(--large-font);
@@ -428,56 +542,7 @@ main.divider a[href*="checkout"]:hover {
   background-color: var(--primary-color);
 }
 
-.category-icons {
-  display: block;
-  margin: 0 auto;
-}
-
-.category-icons img {
-  padding: 10px;
-  margin: 20px;
-  width: 50px;
-}
-
-footer {
-  font-size: var(--small-font);
-  padding: 1em;
-}
-
-.breadcrumb {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 1rem 2rem;
-  font-size: 0.9rem;
-  color: var(--dark-grey);
-}
-
-.breadcrumb a,
-.breadcrumb-category {
-  color: var(--secondary-color);
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.breadcrumb a:hover {
-  text-decoration: underline;
-}
-
-.category-cta {
-  padding: 0.5rem 0 1rem;
-}
-
-.category-cta a {
-  color: var(--secondary-color);
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.category-cta a:hover {
-  text-decoration: underline;
-}
-
-/* Checkout - W04 */
+/* ---------- Checkout - W04 ---------- */
 .checkout {
   max-width: 900px;
   margin: auto;
@@ -544,9 +609,8 @@ footer {
   background-color: var(--secondary-color);
   color: white;
 }
-/* End Checkout */
 
-/* Comments */
+/* ---------- Comments ---------- */
 .comments-section h3 {
   border-bottom: 1px solid #ddd;
   padding-bottom: 0.5rem;
@@ -587,9 +651,8 @@ footer {
   cursor: pointer;
   font-size: 1rem;
 }
-/* End Comments */
 
-/* Newsletter */
+/* ---------- Newsletter ---------- */
 .newsletter {
   max-width: 480px;
   margin: 2rem auto;
@@ -631,18 +694,8 @@ footer {
 #comment-msg.error {
   color: #c62828;
 }
-/* End Newsletter */
 
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
-}
-
-/* Registration modal */
+/* ---------- Registration modal ---------- */
 .registration-modal {
   width: min(90%, 450px);
   margin: auto;
@@ -694,6 +747,7 @@ footer {
   background: var(--light-grey);
 }
 
+/* ---------- Desktop ---------- */
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
@@ -726,8 +780,30 @@ footer {
   }
 }
 
+/* ---------- Mobile ---------- */
 @media screen and (max-width: 500px) {
   .breadcrumb {
     padding: 0.75rem 1rem;
+  }
+
+  header {
+    flex-wrap: wrap;
+  }
+
+  .logo {
+    width: auto;
+    font-size: 24px;
+  }
+
+  .main-nav {
+    order: 3;
+    width: 100%;
+  }
+
+  .search-form {
+    order: 2;
+    max-width: none;
+    width: 100%;
+    margin: 0.5rem 0;
   }
 }
