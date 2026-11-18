@@ -571,45 +571,54 @@ main.divider a[href*="checkout"]:hover {
   background-color: var(--primary-color);
 }
 
-/* ===== Animate cart icon when item added ===== */
-@keyframes cart-shake {
-  0% {
-    transform: rotate(0deg) scale(1);
-  }
-
-  15% {
-    transform: rotate(-15deg) scale(1.15);
-  }
-
-  30% {
-    transform: rotate(12deg) scale(1.15);
-  }
-
-  45% {
-    transform: rotate(-9deg) scale(1.1);
-  }
-
-  60% {
-    transform: rotate(6deg) scale(1.05);
-  }
-
-  75% {
-    transform: rotate(-3deg) scale(1);
-  }
-
-  100% {
-    transform: rotate(0deg) scale(1);
-  }
+/* Registration modal */
+.registration-modal {
+  width: min(90%, 450px);
+  margin: auto;
+  padding: 2rem;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
-.cart.cart-animate svg {
-  animation: cart-shake 0.6s ease-in-out;
-  transform-origin: center bottom;
+.registration-modal::backdrop {
+  background: rgba(0, 0, 0, 0.65);
 }
 
-/* Respect users who prefer less motion */
-@media (prefers-reduced-motion: reduce) {
-  .cart.cart-animate svg {
-    animation: none;
-  }
+.registration-modal h2 {
+  margin-bottom: 1rem;
+  color: var(--secondary-color);
+}
+
+.registration-modal p {
+  padding: 0.5rem 0;
+  line-height: 1.5;
+}
+
+.registration-modal form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.registration-modal input {
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid var(--light-grey);
+  border-radius: 4px;
+}
+
+.registration-modal__close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  padding: 0.25rem 0.65rem;
+  background: transparent;
+  color: var(--dark-grey);
+  font-size: 1.5rem;
+}
+
+.registration-modal__close:hover {
+  background: var(--light-grey);
 }
