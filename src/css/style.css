@@ -43,8 +43,11 @@ p {
 }
 
 footer {
-  font-size: var(--small-font);
-  padding: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;    
+  text-align: center;
+  padding: 1rem;
 }
 
 /* ---------- Logo ---------- */
@@ -813,11 +816,4 @@ main.divider a[href*="checkout"]:hover {
     width: 100%;
     margin: 0.5rem 0;
   }
-}
-footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;    
-  text-align: center;
-  padding: 1rem;
 }
