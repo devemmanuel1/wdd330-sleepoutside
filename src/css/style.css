@@ -814,3 +814,10 @@ main.divider a[href*="checkout"]:hover {
     margin: 0.5rem 0;
   }
 }
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;    
+  text-align: center;
+  padding: 1rem;
+}
